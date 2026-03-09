@@ -1,0 +1,58 @@
+import java.util.*;
+
+class Employee {
+    int eNo;
+    String eName;
+    double salary;
+
+    void read(Scanner sc) {
+        System.out.print("Enter Employee Number: ");
+        eNo = sc.nextInt();
+
+        System.out.print("Enter Employee Name: ");
+        eName = sc.next();
+
+        System.out.print("Enter Salary: ");
+        salary = sc.nextDouble();
+    }
+
+    void display() {
+        System.out.println("Employee Number: " + eNo);
+        System.out.println("Employee Name: " + eName);
+        System.out.println("Salary: " + salary);
+    }
+}
+
+public class EmpSearch {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of employees: ");
+        int n = sc.nextInt();
+
+        Employee[] e = new Employee[n];
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("\nEnter details of Employee " + (i + 1));
+            e[i] = new Employee();
+            e[i].read(sc);
+        }
+
+        System.out.print("\nEnter Employee Number to search: ");
+        int key = sc.nextInt();
+
+        boolean found = false;
+
+        for (Employee emp : e) {
+            if (emp.eNo == key) {
+                System.out.println("\nEmployee Found:");
+                emp.display();
+                found = true;
+            }
+        }
+
+        if (!found)
+            System.out.println("Employee not found");
+    }
+}
