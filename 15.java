@@ -1,50 +1,66 @@
-import java.util.*;
+import java.util.Scanner;
 
 class Employee {
-    int eNo;
-    String eName;
+
+    int empid;
+    String name;
     double salary;
 
-    Employee(int eNo, String eName, double salary) {
-        this.eNo = eNo;
-        this.eName = eName;
-        this.salary = salary;
-    }
 }
 
 class Teacher extends Employee {
-    String dept;
+
+    String department;
     String subject;
 
-    Teacher(int eNo, String eName, double salary, String dept, String subject) {
-        super(eNo, eName, salary);
-        this.dept = dept;
-        this.subject = subject;
+    void read() {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Employee ID: ");
+        empid = sc.nextInt();
+
+        System.out.print("Enter Name: ");
+        name = sc.next();
+
+        System.out.print("Enter Salary: ");
+        salary = sc.nextDouble();
+
+        System.out.print("Enter Department: ");
+        department = sc.next();
+
+        System.out.print("Enter Subject: ");
+        subject = sc.next();
     }
 
     void display() {
-        System.out.println(eNo + " " + eName + " " + salary + " " + dept + " " + subject);
+
+        System.out.println("ID: "+empid);
+        System.out.println("Name: "+name);
+        System.out.println("Salary: "+salary);
+        System.out.println("Department: "+department);
+        System.out.println("Subject: "+subject);
     }
 }
 
-public class TeacherTest {
-    public static void main(String[] args) {
+public class TeacherDemo {
+
+    public static void main(String args[]) {
+
         Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of teachers: ");
         int n = sc.nextInt();
 
-        Teacher[] t = new Teacher[n];
+        Teacher t[] = new Teacher[n];
 
-        for (int i = 0; i < n; i++) {
-            int eNo = sc.nextInt();
-            String eName = sc.next();
-            double salary = sc.nextDouble();
-            String dept = sc.next();
-            String subject = sc.next();
-
-            t[i] = new Teacher(eNo, eName, salary, dept, subject);
+        for(int i=0;i<n;i++) {
+            t[i] = new Teacher();
+            t[i].read();
         }
 
-        for (Teacher teacher : t)
-            teacher.display();
+        for(int i=0;i<n;i++) {
+            t[i].display();
+        }
     }
 }
